@@ -1,115 +1,23 @@
 <?xml version="1.0"?>
 <!--
 Build Prerequisites:
-XUnit.NAntTasks - http://www.codinginstinct.com/2008/09/xunit-and-teamcity-support.html
 YUICompressor - http://yuilibrary.com/downloads/#yuicompressor
 NAnt.Contrib.Tasks - http://nantcontrib.sourceforge.net/
 -->
 
-<project name="CarPark" default="deploy">
-  <target name="init">
-    <!--Module specific variables.-->
-    <property name="ModuleName" value="CarPark" overwrite="false"/>
-    <property name="version" value="01.00.19"/>
-
-    <property name="webroot.dir" value="website"/>
-    <property name="module.dir" value="${webroot.dir}/DesktopModules/${ModuleName}" overwrite="false"/>
-    <property name="test.dir" value="${ModuleName}.Tests" overwrite="false"/>
-    <property name="test_bin.dir" value="${test.dir}/bin"/>
-    <property name="temp.dir" value="temp"/>
-    <property name="resource.dir" value="resources"/>
-    <property name="bin.dir" value="..\..\bin"/>
-    <property name="install.dir" value="Install"/>
-    <property name="results.dir" value="Results"/>
-    <property name="YUICompressor.dir" value="${bin.dir}\yuicompressor-2.4.2"/>
-    <!--
-    <loadtasks assembly="${path::combine(bin.dir, 'nantcontrib-0.85/bin/NAnt.Contrib.Tasks.dll')}"/>
-    <loadtasks assembly="${path::combine(bin.dir, 'XUnit.NAntTasks/source/XUnit.NAntTasks/bin/Release/XUnit.NAntTasks.dll')}"/>
-    -->
-  </target>
-
-  <target name="clean" depends="init">
-    <delete dir="${install.dir}" if="${directory::exists(install.dir)}"/>
-    <delete dir="${resource.dir}" if="${directory::exists(resource.dir)}"/>
-    <delete dir="${temp.dir}" if="${directory::exists(temp.dir)}"/>
-    <delete dir="${results.dir}" if="${directory::exists(results.dir)}"/>
-    <delete dir="${test_bin.dir}" if="${directory::exists(test_bin.dir)}"/>
-  </target>
-
-  <target name="prepare" depends="init">
-    <mkdir dir="${results.dir}" unless="${directory::exists(results.dir)}"/>
-  </target>
-
-  <target name="compile" depends="init,prepare">
-    <exec program="${environment::get-variable('WINDIR')}\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
-                failonerror="true"
-                output="${results.dir}/msbuild_log.xml">
-      <arg value="${ModuleName}.sln" />
-      <arg value="/property:Configuration=release"/>
-      <arg value="/t:Rebuild"/>
-    </exec>
-  </target>
-
-  <!--
-  <target name="test" depends="compile">
-    <mkdir dir="${results.dir}" unless="${directory::exists(results.dir)}"/>
-    <xunit assembly="${ModuleAssembly}.Tests.dll"
-        html="${results.dir}/test_report.html"
-    workingDir="${test.dir}/bin/Release"/>
-  </target>
-  -->
-
-
-
-
-  <target name="deploy" depends="compile,resources">
-    <mkdir dir="${temp.dir}" unless="${directory::exists(temp.dir)}"/>
-    <mkdir dir="${results.dir}" unless="${directory::exists(results.dir)}"/>
-   
-    <copy todir="${temp.dir}" flatten="true">
-      <fileset basedir="${module.dir}">
-        <include name="Documentation/License.html"/>
-        <include name="Documentation/ReleaseNotes.html"/>
-        <include name="${ModuleName}.dnn"/>
-      </fileset>
-    </copy>
-
-    <copy todir="${temp.dir}">
-      <fileset basedir="${resource.dir}">
-        <include name="resources.zip"/>
-      </fileset>
-    </copy>
-
-    <copy todir="${temp.dir}">
-      <fileset basedir="${webroot.dir}/bin">
-        <include name="TheCarPark.Modules.BuyPass.dll"/>
-        <include name="TheCarPark.Modules.BrowseLots.dll"/>
-        <include name="TheCarPark.Modules.PayTicket.dll"/>
-        <include name="TheCarPark.Modules.ManagePasses.dll"/>
-        <include name="TheCarPark.Modules.EmailBlast.dll"/>
-        <include name="TheCarPark.Modules.PurchaseHistory.dll"/>
-        <include name="TheCarPark.Modules.ParkingPassManagement.dll"/>
-        <include name="TheCarPark.Data.dll" />
-        <include name="TheCarPark.Common.dll" />
-        <include name="TheCarPark.Web.dll" />
-        <include name="StructureMap.dll" />
-        <include name="Synoptek.Spice.dll" />
-        <include name="WebFormsMvp.Contrib.dll" />
-        <include name="WebFormsMvp.Contrib.StructureMap.dll" />
-        <include name="Interop.LPICOM_6_0Lib.dll" />
-        <include name="Microsoft.Practices.Web.UI.WebControls.dll" />
-        <include name="GridViewHelper.dll" />
-      </fileset>
-    </copy>
-
-    <mkdir dir="${install.dir}" unless="${directory::exists(install.dir)}"/>
-    <zip zipfile="${install.dir}/${ModuleName}_${version}_Install.zip">
-      <fileset basedir="${temp.dir}">
-        <include name="**/*"/>
-      </fileset>
-    </zip>
-    <!--Delete temp directory -->
-    <delete dir="${temp.dir}" failonerror="false"/>
-    <delete dir="${resource.dir}" failonerror="false"/>
-  </target>
+<project name="CuckooTimer" default="publish">
+	  <property name="bin.dir" value="C:/Users/ajackson/Development/Bin/"/>
+  	<property name="yuicompressor.dir" value="${path::combine(bin.dir, 'yuicompressor-2.4.7')}"/>
+  	<property name="nantcontrib.dir" value="${path::combine(bin.dir, 'nantcontrib-0.91')}"/>
+      <target name="*">
+      	<echo message="Using YUICompressor from ${yuicompressor.dir}" />
+      	<echo message="Loading nantcontrib from ${nantcontrib.dir}" />
+      	<loadtasks assembly="${nantcontrib.dir}/bin/NAnt.Contrib.Tasks.dll"/>
+        <nant target="${target::get-current-target()}">
+            <buildfiles>
+                <include name="**/*.build" />
+                <exclude name="default.build" />
+            </buildfiles>
+        </nant>
+    </target>	
 </project>
