@@ -1,1 +1,1 @@
-The Cuckoo Timer is a time tracking application
+The Cuckoo Timer is a time tracking application- more content to be added
