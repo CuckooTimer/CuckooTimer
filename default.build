@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+Build Prerequisites:
+YUICompressor - http://yuilibrary.com/downloads/#yuicompressor
+NAnt.Contrib.Tasks - http://nantcontrib.sourceforge.net/
+-->
+
+<project name="CuckooTimer" default="publish">
+	  <property name="bin.dir" value="C:/Users/ajackson/Development/Bin/"/>
+  	<property name="yuicompressor.dir" value="${path::combine(bin.dir, 'yuicompressor-2.4.7')}"/>
+  	<property name="nantcontrib.dir" value="${path::combine(bin.dir, 'nantcontrib-0.91')}"/>
+      <target name="*">
+      	<echo message="Using YUICompressor from ${yuicompressor.dir}" />
+      	<echo message="Loading nantcontrib from ${nantcontrib.dir}" />
+      	<loadtasks assembly="${nantcontrib.dir}/bin/NAnt.Contrib.Tasks.dll"/>
+        <nant target="${target::get-current-target()}">
+            <buildfiles>
+                <include name="**/*.build" />
+                <exclude name="default.build" />
+            </buildfiles>
+        </nant>
+    </target>	
+</project>
