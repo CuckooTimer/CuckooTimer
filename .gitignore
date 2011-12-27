@@ -1,3 +1,7 @@
 *.bak
 *.usr
 _Resharper*
+
+src/CuckooTimer-Database/CuckooTimer-Database.1.2.dotCover
+src/CuckooTimer-Database/CuckooTimer-Database.suo
+src/CuckooTimer-Database/CuckooTimer-Database/obj
