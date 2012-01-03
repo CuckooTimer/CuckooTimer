@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<project name="FluentMigratorProof" xmlns="http://nant.sourceforge.net/release/0.90/nant.xsd" default="migrate-Development">
+  <loadtasks assembly="./FluentMigrator.NAnt.dll" />
+  <target name="Reset" description="Migrate the database to the base version">
+    <migrate
+    database="sql"
+    connection="Data Source=localhost;Initial Catalog=CuckooTimer;User Id=BuildUser;Password=CuckooTimerBuild;"
+    namespace="CuckooTimer_Database.Migrations"
+    target="./bin/CuckooTimer-Database.dll"
+    task="rollback:all"
+    />
+  </target>
+  <target name="migrate-Development" description="Migrate the database to the latest version">
+    <migrate
+    database="sql"
+    connection="Data Source=localhost;Initial Catalog=CuckooTimer;User Id=BuildUser;Password=CuckooTimerBuild;"
+    namespace="CuckooTimer_Database.Migrations"
+    target="./bin/CuckooTimer-Database.dll"
+    profile="Development"
+    />
+  </target>
+</project>
