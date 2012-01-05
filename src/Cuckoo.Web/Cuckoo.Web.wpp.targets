@@ -1,0 +1,42 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <UsingTask AssemblyFile="$(MSBuildThisFileDirectory)..\..\tools\SmallSharpTools.Packer\SmallSharpTools.Packer.dll"
+             TaskName="SmallSharpTools.Packer.MSBuild.Packer" />
+  <PropertyGroup>
+    <_CompressCssTempFolder>$(IntermediateOutputPath)CompressJs\</_CompressCssTempFolder>
+    <_CompressJsTempFolder>$(IntermediateOutputPath)CompressCss\</_CompressJsTempFolder>
+  </PropertyGroup>
+
+  <Target Name="CompressJsAndCss" AfterTargets="CopyAllFilesToSingleFolderForPackage">
+    <!-- Discover files to compress -->
+    <ItemGroup>
+      <_JavaScriptFiles Remove="@(_JavaScriptFiles)" />
+      <_CssFiles Remove="@(_CssFiles)" />
+      <_JavaScriptFiles Include="Scripts\**\*.js" />
+      <_CssFiles Include="Content\**\*.css" />
+    </ItemGroup>
+
+    <Message Text="Compressing JS and Css" Importance="high" />
+
+    <Packer InputFiles="%(_JavaScriptFiles.Identity)"
+            OutputFileName="@(_JavaScriptFiles->'$(_PackageTempDir)\Scripts\%(RecursiveDir)%(Filename)%(Extension)')"
+            Mode="JSMin"
+            Verbose="false"
+            Condition=" '@(_JavaScriptFiles)' != ''" />
+
+    <Packer InputFiles="%(_CssFiles.Identity)"
+            OutputFileName="@(_CssFiles->'$(_PackageTempDir)\Content\%(RecursiveDir)%(Filename)%(Extension)')"
+            Mode="CSSMin"
+            Verbose="false"
+            Condition=" '@(_CssFiles)' != '' "/>
+
+    <!-- Now add all the files to the list of files to be published -->
+    <ItemGroup>
+      <_FilesToAdd Remove="@(_FilesToAdd)"/>
+      <_FilesToAdd Include="$(_CompressJsTempFolder)\**\*"/>
+      <_FilesToAdd Include="$(_CompressCssTempFolder)\**\*"/>
+    </ItemGroup>
+  </Target>
+
+
+</Project>

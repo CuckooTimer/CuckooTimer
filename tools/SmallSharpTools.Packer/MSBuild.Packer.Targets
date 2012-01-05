@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <MSBuildPackerPath Condition="'$(MSBuildPackerPath)' == ''">$(MSBuildExtensionsPath)\SmallSharpTools.Packer</MSBuildPackerPath>
+    <MSBuildPackerLib>$(MSBuildPackerPath)\SmallSharpTools.Packer.dll</MSBuildPackerLib>
+  </PropertyGroup>
+
+  <UsingTask AssemblyFile="$(MSBuildPackerLib)" TaskName="SmallSharpTools.Packer.MSBuild.Packer" />
+  <UsingTask AssemblyFile="$(MSBuildPackerLib)" TaskName="SmallSharpTools.Packer.MSBuild.UpdateWebConfig" />
+
+</Project>
