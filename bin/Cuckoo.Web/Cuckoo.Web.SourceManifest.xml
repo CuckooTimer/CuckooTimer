@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\ajackson\Development\Projects\Cuckoo\jacksonakj\src\Cuckoo.Web\obj\release\Package\PackageTmp" managedRuntimeVersion="v4.0" />
+  <setAcl path="C:\Users\ajackson\Development\Projects\Cuckoo\jacksonakj\src\Cuckoo.Web\obj\release\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\ajackson\Development\Projects\Cuckoo\jacksonakj\src\Cuckoo.Web\obj\release\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

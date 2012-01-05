@@ -1,0 +1,47 @@
+<project name="Cuckcoo Web" default="build">
+		<property name="debug" value="AutomatedDebug" />
+    <property name="base.dir" value="${project::get-base-directory()}"/> 
+    <property name="mybuild.dir" value="${path::combine(build.dir, 'Cuckoo.Web')}" />
+    
+    <target name="clean" description="Delete all previously compiled binaries.">
+        <delete>
+            <fileset>
+                <include name="**/bin/**" />
+                <include name="**/obj/**" />
+                <include name="**/*.suo" />
+                <include name="**/*.user" />
+                <include name="**/*.bak" />
+            </fileset>
+        </delete>
+    </target>
+        
+    <target name="rebuild" depends="clean, build" />
+
+    <target name="build">
+    		<mkdir dir="${working.dir}" unless="${directory::exists(working.dir)}"/>
+    		
+		    <exec program="${framework::get-framework-directory('net-4.0')}/MSBuild.exe"
+		                failonerror="true"
+		                output="${working.dir}/Cuckoo.Web.build.log">
+		      <arg value="Cuckoo.Web.csproj" />
+		      <arg value="/property:Configuration=${configuration}"/>
+		      <arg value="/t:Rebuild"/>
+		    </exec>
+        <property name="expected.output" value="${base.dir}/bin/Cuckoo.Web.dll"/>
+        <fail unless="${file::exists(expected.output)}">Output file doesn't exist in ${expected.output}</fail>       
+    </target>
+    
+    <target name="publish" depends="build">
+    	  <mkdir dir="${mybuild.dir}" unless="${directory::exists(mybuild.dir)}"/>
+    	  
+        <exec program="${framework::get-framework-directory('net-4.0')}/MSBuild.exe" 
+        			failonerror="true"
+        			output="${working.dir}/Cuckoo.Web.publish.log">
+            <arg value="Cuckoo.Web.csproj" />
+            <arg value="/nologo" />
+            <arg value="/p:PackageLocation=${mybuild.dir}/Cuckoo.Web.zip" />
+            <arg value="/T:Package" />
+            <arg value="/p:Configuration=${configuration}" />
+        </exec>
+    </target>    
+</project>
