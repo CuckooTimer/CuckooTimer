@@ -1,0 +1,7 @@
+C:\CuckooTimer\src\Cuckoo.Web\bin\Cuckoo.Web.dll
+C:\CuckooTimer\src\Cuckoo.Web\bin\Cuckoo.Web.pdb
+C:\CuckooTimer\src\Cuckoo.Web\bin\EntityFramework.dll
+C:\CuckooTimer\src\Cuckoo.Web\bin\EntityFramework.xml
+C:\CuckooTimer\src\Cuckoo.Web\obj\Debug\ResolveAssemblyReference.cache
+C:\CuckooTimer\src\Cuckoo.Web\obj\Debug\Cuckoo.Web.dll
+C:\CuckooTimer\src\Cuckoo.Web\obj\Debug\Cuckoo.Web.pdb

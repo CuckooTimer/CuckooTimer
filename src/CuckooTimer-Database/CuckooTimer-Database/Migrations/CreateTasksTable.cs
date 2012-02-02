@@ -16,7 +16,7 @@ namespace CuckooTimer_Database.Migrations
 
         public override void Down()
         {
-            Delete.Table("Users");
+            Delete.Table("Tasks");
         }
     }
 }

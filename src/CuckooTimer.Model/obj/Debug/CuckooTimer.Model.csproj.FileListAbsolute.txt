@@ -1,0 +1,5 @@
+C:\CuckooTimer\src\CuckooTimer.Model\bin\Debug\CuckooTimer.Model.dll
+C:\CuckooTimer\src\CuckooTimer.Model\bin\Debug\CuckooTimer.Model.pdb
+C:\CuckooTimer\src\CuckooTimer.Model\obj\Debug\ResolveAssemblyReference.cache
+C:\CuckooTimer\src\CuckooTimer.Model\obj\Debug\CuckooTimer.Model.dll
+C:\CuckooTimer\src\CuckooTimer.Model\obj\Debug\CuckooTimer.Model.pdb

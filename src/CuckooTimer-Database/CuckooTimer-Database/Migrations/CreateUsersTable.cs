@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace CuckooTimer_Database
+namespace CuckooTimer_Database.Migrations
 {
     //Migration Format YYYYMMDDHH 
 

@@ -1,0 +1,10 @@
+C:\CuckooTimer\src\CuckooTimer.Repository\obj\Debug\ResolveAssemblyReference.cache
+C:\CuckooTimer\src\CuckooTimer.Repository\bin\Debug\CuckooTimer.Repository.dll
+C:\CuckooTimer\src\CuckooTimer.Repository\bin\Debug\CuckooTimer.Repository.pdb
+C:\CuckooTimer\src\CuckooTimer.Repository\bin\Debug\Simple.Data.dll
+C:\CuckooTimer\src\CuckooTimer.Repository\obj\Debug\CuckooTimer.Repository.dll
+C:\CuckooTimer\src\CuckooTimer.Repository\obj\Debug\CuckooTimer.Repository.pdb
+C:\CuckooTimer\src\CuckooTimer.Repository\bin\Debug\CuckooTimer.Model.dll
+C:\CuckooTimer\src\CuckooTimer.Repository\bin\Debug\CuckooTimer.Model.pdb
+C:\CuckooTimer\src\CuckooTimer.Repository\bin\Debug\Simple.Data.Ado.dll
+C:\CuckooTimer\src\CuckooTimer.Repository\bin\Debug\Simple.Data.SqlServer.dll
