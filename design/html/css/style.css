@@ -277,9 +277,12 @@ td { vertical-align: top; }
 	width: 50%;
 	float: left;
 }
-.sw-footer-total {
-	float: left;
+#sw-header .total {
+	float: right;
 	font-weight: bold;
+}
+#sw-header .date { 
+	float: left;
 }
 
 
