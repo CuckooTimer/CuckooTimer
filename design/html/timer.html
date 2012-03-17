@@ -24,6 +24,7 @@
   <!-- CSS: implied media=all -->
   <!-- CSS concatenated and minified via ant build script-->
   <link rel="stylesheet" href="css/style.css">
+  <link rel='stylesheet' media='screen and (max-width: 700px)' href='css/narrow.css' />
   <!-- end CSS-->
 
   <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -73,16 +74,16 @@
 	            <div class="task-status">
 	                <input type="checkbox" name="done" />
 	            </div>
-	            <div class="task-timer">
-	                <span class="minutes">0</span>.<span class="seconds">00</span>
-	                <a href="#">Start</a>
-	            </div>
+	            <dl class="task-timer group stopped">
+	            	<dt><span class="minutes">0</span>.<span class="seconds">75</span><a class="timer-button" href="#">Start</a><span class="duration"></span></dt>
+	            	<dd class="note"></dd>
+	            </dl>
 	            <ul class="task-buttons button-panel group">
 	                <li><a href="#">Edit</a></li>
 	                <li><a href="#">Delete</a></li>
 	            </ul>
 	        </li>
-	        <li class="group">
+	        <li class="group task-active">
 	            <div class="task-name">
 	                <h3>Training and skills improvement</h3>
 	                <p>Hokey religions and ancient weapons are no match for a good blaster at your side, kid. What good is a reward if you ain't around to use it? </p>
@@ -90,10 +91,10 @@
 	            <div class="task-status">
 	                <input type="checkbox" name="done" />
 	            </div>
-	            <div class="task-timer">
-	                <span class="minutes">0</span>.<span class="seconds">00</span>
-	                <a href="#">Start</a>
-	            </div>
+	            <dl class="task-timer group">
+	            	<dt><span class="minutes">1</span>.<span class="seconds">31</span><a class="timer-button started" href="#">Stop</a><span class="duration">(Started at 11:41pm with .56 hours)</span></dt>
+	            	<dd class="note">Your eyes can deceive you. Don't trust them. Kid, I've flown from one side of this galaxy to the other.</dd>
+	            </dl>
 	            <ul class="task-buttons button-panel group">
 	                <li><a href="#">Edit</a></li>
 	                <li><a href="#">Delete</a></li>

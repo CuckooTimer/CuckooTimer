@@ -254,7 +254,6 @@ td { vertical-align: top; }
 }
 #sw-tasks li .task-name h3 { font-weight: bold ; margin: 0 0 5px 0;}
 #sw-tasks li .task-name p { color: silver ; margin: 0; padding: 0;}
-#sw-tasks li .task-timer { font-weight: bold }
 
 .task-name {
     width: 50%;
@@ -266,6 +265,34 @@ td { vertical-align: top; }
 .task-timer {
 	float: left;
 	margin: 0 0 0 20px;
+	max-width: 300px;
+}
+.task-timer .minutes,
+.task-timer .seconds {
+	font-weight: bold;
+	
+}
+.task-timer dt {
+	float: left;
+	line-height:28px;
+}
+.task-timer dd {
+	margin: 0; padding: 0;
+}
+.task-timer .duration {
+	font-size: .75em;
+	margin-left: 5px;
+}
+.task-timer .timer-button {
+	margin-left: 5px;
+	padding: 3px;
+	
+}
+.task-timer .started {
+background-color:#FFCCFF
+}
+.task-timer>dd.note {
+	clear: both;	
 }
 .task-buttons {
     float: right;
@@ -283,6 +310,10 @@ td { vertical-align: top; }
 }
 #sw-header .date { 
 	float: left;
+}
+
+.task-active {
+	 background: #CCFFCC
 }
 
 

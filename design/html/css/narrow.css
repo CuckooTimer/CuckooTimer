@@ -1,0 +1,6 @@
+﻿.task-name p { display: none; }
+dl.task-timer {
+	margin: 0;
+	float: none;
+	clear: both;
+}
