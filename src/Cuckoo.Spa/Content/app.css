@@ -1,0 +1,9 @@
+﻿body {
+padding-top: 70px;
+padding-bottom: 30px;
+}
+
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1;}

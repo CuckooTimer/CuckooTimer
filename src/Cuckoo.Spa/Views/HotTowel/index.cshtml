@@ -1,0 +1,36 @@
+﻿@using System.Web
+@using System.Web.Optimization
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+
+    <title>Cuckoo</title>
+
+    @Styles.Render("~/Content/css")
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div id="applicationHost">
+        @Html.Partial("_splash")
+    </div><!-- /.container -->
+
+    @Scripts.Render("~/scripts/vendor")
+    @if(HttpContext.Current.IsDebuggingEnabled) {
+        <script type="text/javascript" src="~/App/durandal/amd/require.js" data-main="@Url.Content("~/App/main")"></script>
+    } else {
+		<!-- Remember to run the Durandal optimizer.exe to create the main-built.js  -->
+        <script type="text/javascript" src="~/App/main-built.js"></script>
+    }
+  </body>
+</html>

@@ -1,0 +1,26 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Cuckoo</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav"  data-bind="foreach: router.visibleRoutes">
+                <li data-bind="css: { active: isActive }"><a data-bind="    attr: { href: hash }, text: name" href="#">Home</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+<div class="container">
+    <!--ko compose: {model: router.activeItem, 
+        afterCompose: router.afterCompose, 
+        transition: 'entrance'} -->
+    <!--/ko-->
+    <footer>
+        <!--ko compose: {view: 'footer'} --><!--/ko-->
+    </footer>
+</div>

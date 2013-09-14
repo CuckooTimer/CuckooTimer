@@ -1,0 +1,23 @@
+﻿/* #region Timer */
+#timer { }
+#timer>div.total {
+    font-weight: bold;
+    text-align: right;
+}
+#timer>div.date { 
+   font-size: 1.75em;
+}
+
+.minutes { font-size: 1.75em; }
+.seconds { font-size: 1em; }
+/* #endregion */
+
+/* #region Tasks*/
+#tasks.list-group .list-group-item.active {
+    color: #468847;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+
+/* #endregion */

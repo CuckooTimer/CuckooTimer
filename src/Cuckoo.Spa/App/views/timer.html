@@ -1,0 +1,21 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">
+        <div id="timer" class="row">
+            <div class="col-xs-7 col-sm-7 col-md-10 date" data-bind="dateString: today, datePattern: 'dddd, MMMM Do, YYYY'">{CurrentDate}</div>
+            <div class="col-xs-5 col-sm-5 col-md-2 total">
+                <span class="minutes" data-bind="text: totalMinutes">0</span>.<span class="seconds" data-bind="text: totalSeconds">00</span>
+            </div>
+        </div>
+    </div>
+
+    <ul id="tasks" class="list-group" data-bind="foreach: tasks">
+        <li class="list-group-item" data-bind="css: { active: Active}" >
+            <div class="pull-right">
+                <span class="minutes">0</span>.<span class="seconds">00</span> <span class="glyphicon" data-bind="css: { 'glyphicon-play': !Active, 'glyphicon-stop': Active }"></span>
+            </div>
+            <h4><span data-bind="text: Name">{Name}</span> </h4>
+            <p data-bind="text: Description">{Description}</p>
+        </li>
+    </ul>
+
+</div>
