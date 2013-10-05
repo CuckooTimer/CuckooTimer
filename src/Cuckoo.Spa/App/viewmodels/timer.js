@@ -37,12 +37,12 @@
 
     function toggleTimer(task) {
         var self = this;
-        for (i = 0; i < self.tasks.length; i++) {
-            if (vm.tasks[i].Id !== task.Id) {
-                task.Active = false;
+        for (i = 0; i < tasks().length; i++) {
+            if (tasks()[i].Id() !== task.Id()) {
+                task.Active(false);
             }
         }
-        task.Active = true;
+        task.Active(true);
     }
 
     function initVm() {
