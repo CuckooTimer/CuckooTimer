@@ -12,7 +12,8 @@
         title: 'Timer View',
         today: today,
         totalTime: totalTime,
-        tasks: tasks
+        tasks: tasks,
+        toggleTimer: toggleTimer
     };
 
     initVm();
@@ -32,6 +33,16 @@
                 logger.log('Tasks Loaded', null, 'timer', true);
                 startTimer();
             });
+    }
+
+    function toggleTimer(task) {
+        var self = this;
+        for (i = 0; i < self.tasks.length; i++) {
+            if (vm.tasks[i].Id !== task.Id) {
+                task.Active = false;
+            }
+        }
+        task.Active = true;
     }
 
     function initVm() {

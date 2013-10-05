@@ -11,7 +11,7 @@
     <ul id="tasks" class="list-group" data-bind="foreach: tasks">
         <li class="list-group-item" data-bind="css: { active: Active}" >
             <div class="pull-right">
-                <span class="minutes">0</span>.<span class="seconds">00</span> <span class="glyphicon" data-bind="css: { 'glyphicon-play': !Active, 'glyphicon-stop': Active }"></span>
+                <span class="minutes">0</span>.<span class="seconds">00</span> <a href="#" data-bind="click:$parent.toggleTimer"><span class="glyphicon" data-bind="css: { 'glyphicon-play': !Active, 'glyphicon-stop': Active }"></span></a>
             </div>
             <h4><span data-bind="text: Name">{Name}</span> </h4>
             <p data-bind="text: Description">{Description}</p>
