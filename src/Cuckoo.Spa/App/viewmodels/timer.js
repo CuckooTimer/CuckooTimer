@@ -2,6 +2,7 @@
     var tasks = ko.observableArray();
     var today = ko.observable();
     var totalTime = ko.observable();
+    var currentTask;
     var initialized = false;
     var getTasks = function () {
         return datacontext.getTasks(tasks);
@@ -13,7 +14,8 @@
         today: today,
         totalTime: totalTime,
         tasks: tasks,
-        toggleTimer: toggleTimer
+        toggleTimer: toggleTimer,
+        currentTask: currentTask
     };
 
     initVm();
@@ -36,13 +38,16 @@
     }
 
     function toggleTimer(task) {
-        var self = this;
+        if (!task.Active())
+            currentTask = task;
+        else
+            currentTask = null;
         for (i = 0; i < tasks().length; i++) {
             if (tasks()[i].Id() !== task.Id()) {
-                task.Active(false);
+                tasks()[i].Active(false);
             }
         }
-        task.Active(true);
+        task.Active(!task.Active());
     }
 
     function initVm() {
@@ -67,13 +72,15 @@
         });
     }
 
-    function getTasks() {
+    //function getTasks() {
 
-    }
+    //}
 
     function startTimer() {
         setInterval(function () {
             totalTime(totalTime() + 1);
+            if (currentTask != null)
+                currentTask.totalTime(currentTask.totalTime() + 1);
         }, 1000);
     }
 
