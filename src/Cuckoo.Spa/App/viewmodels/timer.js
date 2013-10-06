@@ -72,15 +72,12 @@
         });
     }
 
-    //function getTasks() {
-
-    //}
-
     function startTimer() {
         setInterval(function () {
-            totalTime(totalTime() + 1);
-            if (currentTask != null)
+            if (currentTask != null) {
+                totalTime(totalTime() + 1);
                 currentTask.totalTime(currentTask.totalTime() + 1);
+            }
         }, 1000);
     }
 
