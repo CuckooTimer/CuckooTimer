@@ -187,6 +187,7 @@
     <Content Include="App\durandal\viewModelBinder.js" />
     <Content Include="App\durandal\widget.js" />
     <Content Include="App\main.js" />
+    <Content Include="App\models\models.js" />
     <Content Include="App\services\datacontext.js" />
     <Content Include="App\services\dataservice.js" />
     <Content Include="App\services\logger.js" />
