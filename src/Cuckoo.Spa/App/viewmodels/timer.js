@@ -1,7 +1,7 @@
 ﻿define(['services/logger', 'services/datacontext'], function (logger, datacontext) {
     var tasks = ko.observableArray();
-    var today = ko.observable();
-    var totalTime = ko.observable();
+    var today = ko.observable(new Date());
+    var totalTime = ko.observable(0);
     var currentTask;
     var initialized = false;
     var getTasks = function () {
@@ -29,9 +29,10 @@
 
         if (initialized) { return; }
         initialized = true;
-
+        //TODO: Show loading message
         return getTasks()
             .then(function () {
+                //TODO: Hide loading message
                 logger.log('Tasks Loaded', null, 'timer', true);
                 startTimer();
             });
@@ -51,8 +52,8 @@
     }
 
     function initVm() {
-        vm.today(new Date());
-        vm.totalTime(0);
+        //vm.today(new Date());
+        //vm.totalTime(0);
         addHandlers();
         addComputeds();
     }
