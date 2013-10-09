@@ -1,7 +1,7 @@
-﻿define(['services/logger', 'services/datacontext'], function (logger, datacontext) {
+﻿define(['services/logger', 'services/datacontext', 'models/models'], function (logger, datacontext, models) {
+    
     var tasks = ko.observableArray();
     var today = ko.observable(new Date());
-    var totalTime = ko.observable(0);
     var currentTask;
     var initialized = false;
     var getTasks = function () {
@@ -12,13 +12,13 @@
         activate: activate,
         title: 'Timer View',
         today: today,
-        totalTime: totalTime,
         tasks: tasks,
         toggleTimer: toggleTimer,
         currentTask: currentTask
     };
+    ko.utils.extend(vm, new models.TimerModel());
 
-    initVm();
+    addHandlers();
 
     return vm;
 
@@ -51,41 +51,13 @@
         task.Active(!task.Active());
     }
 
-    function initVm() {
-        //vm.today(new Date());
-        //vm.totalTime(0);
-        addHandlers();
-        addComputeds();
-    }
-
-    function addComputeds() {
-        vm.totalDays = ko.computed(function () {
-            return Math.floor(vm.totalTime() / 86400);
-        });
-        vm.totalHours = ko.computed(function () {
-            return Math.floor((vm.totalTime() - (vm.totalDays() * 86400)) / 3600);
-        });
-        vm.totalMinutes = ko.computed(function () {
-            return Math.floor((vm.totalTime() - (vm.totalDays() * 86400) - (vm.totalHours() * 3600)) / 60);
-        });
-        vm.totalSeconds = ko.computed(function () {
-            return pad(Math.floor((vm.totalTime() - (vm.totalDays() * 86400) - (vm.totalHours() * 3600) - (vm.totalMinutes() * 60))), 2);
-        });
-    }
-
     function startTimer() {
         setInterval(function () {
             if (currentTask != null) {
-                totalTime(totalTime() + 1);
+                vm.totalTime(vm.totalTime() + 1);
                 currentTask.totalTime(currentTask.totalTime() + 1);
             }
         }, 1000);
-    }
-
-    function pad(num, size) {
-        var s = num + "";
-        while (s.length < size) s = "0" + s;
-        return s;
     }
 
     function addHandlers() {
