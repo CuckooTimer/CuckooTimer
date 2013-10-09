@@ -16,7 +16,7 @@
         toggleTimer: toggleTimer,
         currentTask: currentTask
     };
-    ko.utils.extend(vm, new models.TimerModel());
+    ko.utils.extend(vm, new models.TimerModel()); 
 
     addHandlers();
 
