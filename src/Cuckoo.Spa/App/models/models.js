@@ -27,10 +27,44 @@
         var self = this;
         ko.utils.extend(self, new TimerModel());
         ko.mapping.fromJS(data, {}, self);
+        self.entries = ko.observableArray([]);
+        self.currentEntry;
+        self.addEntry = function () {
+            var entry = new TimeEntryModel();
+            self.entries.push(new TimeEntryModel());
+            return entry;
+        };
+        self.removeEntry = function (entry) {
+            self.entries.remove(entry);
+        };
+        self.startNewTimer = function () {
+            if (self.currentEntry)
+                self.currentEntry.stop();
+            self.currentEntry = self.addEntry();
+            self.currentEntry.start();
+        };
+    }
+
+    var TimeEntryModel = function (data) {
+        var self = this;
+        self.startDate = ko.observable();
+        self.endDate = ko.observable();
+        self.elapsedSeconds = ko.computed(function () {
+            if (!self.startDate()) return 0;
+            var end = self.endDate() ? self.endDate() : new Date();
+            return (end - self.startDate()) / 1000;
+        });
+        self.start = function () {
+            self.startDate(new Date());
+        };
+        self.stop = function () {
+            self.endDate(new Date());
+        };
     }
 
     return {
         TimerModel: TimerModel,
-        TaskModel: TaskModel
+        TaskModel: TaskModel,
+        TimeEntryModel : TimeEntryModel
     };
 });

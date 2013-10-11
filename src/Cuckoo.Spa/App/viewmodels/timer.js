@@ -39,13 +39,19 @@
     }
 
     function toggleTimer(task) {
-        if (!task.Active())
+        if (!task.Active()) {
             currentTask = task;
+            currentTask.startNewTimer();
+        }
         else
             currentTask = null;
+
         for (i = 0; i < tasks().length; i++) {
             if (tasks()[i].Id() !== task.Id()) {
-                tasks()[i].Active(false);
+                var t = tasks()[i];
+                if (t.Active())
+                    t.currentEntry.stop();
+                t.Active(false);
             }
         }
         task.Active(!task.Active());

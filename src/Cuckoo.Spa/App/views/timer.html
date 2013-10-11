@@ -15,6 +15,11 @@
             </div>
             <h4><span data-bind="text: Name">{Name}</span> </h4>
             <p data-bind="text: Description">{Description}</p>
+            <ul class="list-group" data-bind="foreach: entries">
+                <li class="list-group-item">
+                    <span data-bind="dateString: startDate, datePattern: 'MMMM Do YYYY, h:mm:ss a'"></span> - <span data-bind="dateString: endDate, datePattern: 'MMMM Do YYYY, h:mm:ss a'"></span> <span data-bind="text:elapsedSeconds"></span>
+                </li>
+            </ul>
         </li>
     </ul>
 
