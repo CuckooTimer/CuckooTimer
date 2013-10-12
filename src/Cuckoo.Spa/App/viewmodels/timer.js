@@ -40,21 +40,21 @@
 
     function toggleTimer(task) {
         if (!task.Active()) {
+            task.startNewTimer();
             currentTask = task;
-            currentTask.startNewTimer();
         }
-        else
+        else {
+            currentTask.stopTimer();
             currentTask = null;
+        }
 
         for (i = 0; i < tasks().length; i++) {
             if (tasks()[i].Id() !== task.Id()) {
                 var t = tasks()[i];
                 if (t.Active())
-                    t.currentEntry.stop();
-                t.Active(false);
+                    t.stopTimer();
             }
         }
-        task.Active(!task.Active());
     }
 
     function startTimer() {
@@ -73,7 +73,10 @@
                 allBindings = allBindingsAccessor();
                 var valueUnwrapped = ko.utils.unwrapObservable(value);
                 var pattern = allBindings.datePattern || 'MM/DD/YYYY';
-                $(element).text(moment(valueUnwrapped).format(pattern));
+                if (valueUnwrapped)
+                    $(element).text(moment(valueUnwrapped).format(pattern));
+                else
+                    $(element).text("");
             }
         }
     }

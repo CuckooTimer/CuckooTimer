@@ -31,17 +31,27 @@
         self.currentEntry;
         self.addEntry = function () {
             var entry = new TimeEntryModel();
-            self.entries.push(new TimeEntryModel());
+            self.entries.push(entry);
             return entry;
         };
         self.removeEntry = function (entry) {
             self.entries.remove(entry);
         };
         self.startNewTimer = function () {
-            if (self.currentEntry)
+            if (self.currentEntry && self.Active())
                 self.currentEntry.stop();
             self.currentEntry = self.addEntry();
             self.currentEntry.start();
+            self.Active(true);
+        };
+        self.stopTimer = function () {
+            self.currentEntry.stop();
+            self.currentEntry = null;
+            self.Active(false);
+        };
+
+        self.toggleDetails = function (data, event) {
+            $(event.target).closest(".list-group-item").find(".task-details").toggle("fast");
         };
     }
 
