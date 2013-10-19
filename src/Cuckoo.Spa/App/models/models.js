@@ -50,8 +50,24 @@
             self.Active(false);
         };
 
+        self.editing = ko.observable();
+        self.startEditing = function () { this.editing(true); }
+        self.stopEditing = function () { this.editing(false); }
+
+        //TODO: Move this animation into the viewmodel
         self.toggleDetails = function (data, event) {
-            $(event.target).closest(".list-group-item").find(".task-details").toggle("fast");
+            
+            $(event.target).parents(".list-group-item").children(".task-details").toggle();
+
+            var icon = $(event.target).children("span");
+            if (!icon.length) icon = $(event.target);
+            if (icon.hasClass("glyphicon-chevron-down")) { // show
+                icon.removeClass("glyphicon-chevron-down");
+                icon.addClass("glyphicon-chevron-up");
+            } else { // hide
+                icon.removeClass("glyphicon-chevron-up");
+                icon.addClass("glyphicon-chevron-down");
+            }
         };
     }
 

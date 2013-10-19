@@ -1,20 +1,30 @@
-﻿<div class="panel panel-default">
+﻿<div class="row timer-controls">
+    <div class="col-xs-1 col-sm-1 col-md-1"></div>
+    <div class="col-xs-10 col-sm-10 col-md-10 text-center timer-controls-title">Cuckoo</div>
+    <div class="col-xs-1 col-sm-1 col-md-1 text-right"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-plus"></span></button></div>
+</div>
+<div class="panel panel-default timer">
     <div class="panel-heading">
         <div id="timer" class="row">
-            <div class="col-xs-7 col-sm-7 col-md-10 date" data-bind="dateString: today, datePattern: 'dddd, MMMM Do, YYYY'">{CurrentDate}</div>
-            <div class="col-xs-5 col-sm-5 col-md-2 total">
+            <div class="col-xs-7 col-sm-7 col-md-10"><span class="timer-heading-date" data-bind="dateString: today, datePattern: 'dddd, MMMM Do, YYYY'">{CurrentDate}</span></div>
+            <div class="col-xs-5 col-sm-5 col-md-2 text-right">
                 <span class="minutes" data-bind="text: totalMinutes">0</span>.<span class="seconds" data-bind="text: totalSeconds">00</span>
             </div>
         </div>
     </div>
 
     <div id="tasks" class="list-group" data-bind="foreach: tasks">
-        <div class="list-group-item" data-bind="css: { active: Active}" >
+        <div class="list-group-item" data-bind="css: { active: Active, editing: editing}" >
             <div class="list-group-item-body">
             <div class="pull-right">
                 <span class="minutes" data-bind="text: totalMinutes">0</span>.<span class="seconds" data-bind="text: totalSeconds">00</span> <a href="#" data-bind="click:$parent.toggleTimer"><span class="glyphicon" data-bind="css: { 'glyphicon-play': !Active(), 'glyphicon-stop': Active() }"></span></a>
             </div>
-            <h4 class="list-group-item-heading"><span data-bind="text: Name">{Name}</span> </h4>
+            <h4 class="list-group-item-heading view" data-bind="event: {dblclick: startEditing}, text: Name() || 'Double click to edit'">{Name}</h4>
+            <div class="edit">
+                <input class="edit-name" type="text" data-bind="value: Name" />
+                <button type="button" class="btn btn-primary btn-xs" data-bind="value: Name, event: { click: stopEditing }">Save changes</button> or<button type="button" class="btn btn-link btn-xs">Cancel</button> 
+            </div>
+
             <p class="list-group-item-text" data-bind="text: Description">{Description}</p>
                 </div>
             <table class="table task-details" style="display: none;">
@@ -25,18 +35,29 @@
                 </thead>
                 <tbody data-bind="foreach: entries">
                     <tr>
-                        <td data-bind="dateString: startDate, datePattern: 'h:mm:ss a'"></td>
-                        <td data-bind="dateString: endDate, datePattern: 'h:mm:ss a'"></td>
-                        <td data-bind="text: elapsedSeconds"></td>
+                        <td class="col-datetime" data-bind="dateString: startDate, datePattern: 'h:mm:ss a'"></td>
+                        <td class="col-datetime" data-bind="dateString: endDate, datePattern: 'h:mm:ss a'"></td>
+                        <td class="col-elapsed" data-bind="text: elapsedSeconds"></td>
                     </tr>
                 </tbody>
+                <tfoot data-bind="css: { hide: entries().length > 0 }">
+                    <tr>
+                        <td colspan="3" class="warning" >No timer events have been recorded.</td>
+                    </tr>
+                </tfoot>
             </table>
-            <div class="text-center">
-            <button type="button" class="btn btn-link" data-bind="click: toggleDetails">
+            <div class="task-footer text-center">
+            <button type="button" class="btn btn-link btn-xs" data-bind="click: toggleDetails">
               <span class="glyphicon glyphicon-chevron-down"></span>
             </button>            
                 </div>
         </div>
     </div>
 
+</div>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 text-center"></div>
+    <div class="col-md-1 text-right"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-refresh"></span></button></div>
 </div>
