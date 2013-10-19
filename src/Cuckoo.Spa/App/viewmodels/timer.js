@@ -14,6 +14,8 @@
         today: today,
         tasks: tasks,
         toggleTimer: toggleTimer,
+        toggleDetails: toggleDetails,
+        onEnter: onEnter,
         currentTask: currentTask
     };
     ko.utils.extend(vm, new models.TimerModel()); 
@@ -55,6 +57,26 @@
                     t.stopTimer();
             }
         }
+    }
+
+    function toggleDetails(data, event) {
+
+        $(event.target).parents(".list-group-item").children(".task-details").toggle();
+
+        var icon = $(event.target).children("span");
+        if (!icon.length) icon = $(event.target);
+        if (icon.hasClass("glyphicon-chevron-down")) { // show
+            icon.removeClass("glyphicon-chevron-down");
+            icon.addClass("glyphicon-chevron-up");
+        } else { // hide
+            icon.removeClass("glyphicon-chevron-up");
+            icon.addClass("glyphicon-chevron-down");
+        }
+    };
+
+    function onEnter(data, event) {
+        if (event.keyCode == 13) data.commit();
+        return true;
     }
 
     function startTimer() {

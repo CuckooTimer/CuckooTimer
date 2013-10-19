@@ -21,8 +21,8 @@
             </div>
             <h4 class="list-group-item-heading view" data-bind="event: {dblclick: startEditing}, text: Name() || 'Double click to edit'">{Name}</h4>
             <div class="edit">
-                <input class="edit-name" type="text" data-bind="value: Name" />
-                <button type="button" class="btn btn-primary btn-xs" data-bind="value: Name, event: { click: stopEditing }">Save changes</button> or<button type="button" class="btn btn-link btn-xs">Cancel</button> 
+                <input class="edit-name" type="text" data-bind="value: Name, valueUpdate: 'afterkeydown', event: {keypress: $root.onEnter}" />
+                <button type="button" class="btn btn-primary btn-xs" data-bind="value: Name, event: { click: commit }">Save changes</button> or<button type="button" class="btn btn-link btn-xs" data-bind="event: { click: revert }">Cancel</button> 
             </div>
 
             <p class="list-group-item-text" data-bind="text: Description">{Description}</p>
@@ -47,7 +47,7 @@
                 </tfoot>
             </table>
             <div class="task-footer text-center">
-            <button type="button" class="btn btn-link btn-xs" data-bind="click: toggleDetails">
+            <button type="button" class="btn btn-link btn-xs" data-bind="click: $root.toggleDetails">
               <span class="glyphicon glyphicon-chevron-down"></span>
             </button>            
                 </div>

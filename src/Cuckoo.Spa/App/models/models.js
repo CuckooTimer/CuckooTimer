@@ -8,6 +8,7 @@
     var TimerModel = function () {
         var self = this;
         self.totalTime = ko.observable(0);
+        self.totalTime.days = ko.computed(function () { return Math.floor(self.totalTime() / 86400); });
 
         self.totalDays = ko.computed(function () {
             return Math.floor(self.totalTime() / 86400);
@@ -25,18 +26,23 @@
 
     var TaskModel = function (data) {
         var self = this;
+        self.cache = function () { };
         ko.utils.extend(self, new TimerModel());
-        ko.mapping.fromJS(data, {}, self);
         self.entries = ko.observableArray([]);
         self.currentEntry;
+
+        self.update(data);
+               
         self.addEntry = function () {
             var entry = new TimeEntryModel();
             self.entries.push(entry);
             return entry;
         };
+
         self.removeEntry = function (entry) {
             self.entries.remove(entry);
         };
+
         self.startNewTimer = function () {
             if (self.currentEntry && self.Active())
                 self.currentEntry.stop();
@@ -44,6 +50,7 @@
             self.currentEntry.start();
             self.Active(true);
         };
+
         self.stopTimer = function () {
             self.currentEntry.stop();
             self.currentEntry = null;
@@ -53,22 +60,19 @@
         self.editing = ko.observable();
         self.startEditing = function () { this.editing(true); }
         self.stopEditing = function () { this.editing(false); }
+    }
 
-        //TODO: Move this animation into the viewmodel
-        self.toggleDetails = function (data, event) {
-            
-            $(event.target).parents(".list-group-item").children(".task-details").toggle();
-
-            var icon = $(event.target).children("span");
-            if (!icon.length) icon = $(event.target);
-            if (icon.hasClass("glyphicon-chevron-down")) { // show
-                icon.removeClass("glyphicon-chevron-down");
-                icon.addClass("glyphicon-chevron-up");
-            } else { // hide
-                icon.removeClass("glyphicon-chevron-up");
-                icon.addClass("glyphicon-chevron-down");
-            }
-        };
+    TaskModel.prototype.update = function (data) {
+        ko.mapping.fromJS(data, {}, this);
+        this.cache.latestData = data;
+    };
+    TaskModel.prototype.revert = function () {
+        this.update(this.cache.latestData);
+        this.stopEditing();
+    };
+    TaskModel.prototype.commit = function () {
+        this.cache.latestData = ko.toJS(this);
+        this.stopEditing();
     }
 
     var TimeEntryModel = function (data) {
