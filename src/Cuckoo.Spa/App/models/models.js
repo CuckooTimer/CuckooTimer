@@ -8,8 +8,10 @@
     var TimerModel = function () {
         var self = this;
         self.totalTime = ko.observable(0);
-        self.totalTime.days = ko.computed(function () { return Math.floor(self.totalTime() / 86400); });
-
+        //self.totalTime.days = ko.computed(function () { return Math.floor(self.totalTime() / 86400); });
+        //self.totalTime.hours = ko.computed(function () {
+        //    return Math.floor((self.totalTime() - (self.totalDays() * 86400)) / 3600);
+        //});
         self.totalDays = ko.computed(function () {
             return Math.floor(self.totalTime() / 86400);
         });

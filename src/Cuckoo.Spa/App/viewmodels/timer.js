@@ -16,6 +16,7 @@
         toggleTimer: toggleTimer,
         toggleDetails: toggleDetails,
         onEnter: onEnter,
+        addTask: addTask,
         currentTask: currentTask
     };
     ko.utils.extend(vm, new models.TimerModel()); 
@@ -77,6 +78,13 @@
     function onEnter(data, event) {
         if (event.keyCode == 13) data.commit();
         return true;
+    }
+
+    function addTask() {
+        var task = new models.TaskModel({ Id: 0, Name: '', Status: 'New', Tags: [], Description: '', Active: false });
+        task.editing(true);
+        tasks.push(task);
+        return task;
     }
 
     function startTimer() {

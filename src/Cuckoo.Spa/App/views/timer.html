@@ -1,7 +1,7 @@
 ﻿<div class="row timer-controls">
     <div class="col-xs-1 col-sm-1 col-md-1"></div>
     <div class="col-xs-10 col-sm-10 col-md-10 text-center timer-controls-title">Cuckoo</div>
-    <div class="col-xs-1 col-sm-1 col-md-1 text-right"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-plus"></span></button></div>
+    <div class="col-xs-1 col-sm-1 col-md-1 text-right"><button type="button" class="btn btn-link" data-bind="click:addTask"><span class="glyphicon glyphicon-plus"></span></button></div>
 </div>
 <div class="panel panel-default timer">
     <div class="panel-heading">
@@ -21,7 +21,7 @@
             </div>
             <h4 class="list-group-item-heading view" data-bind="event: {dblclick: startEditing}, text: Name() || 'Double click to edit'">{Name}</h4>
             <div class="edit">
-                <input class="edit-name" type="text" data-bind="value: Name, valueUpdate: 'afterkeydown', event: {keypress: $root.onEnter}" />
+                <input class="edit-name" type="text" data-bind="value: Name, valueUpdate: 'afterkeydown', event: {keypress: $root.onEnter}" placeholder="Enter task name" />
                 <button type="button" class="btn btn-primary btn-xs" data-bind="value: Name, event: { click: commit }">Save changes</button> or<button type="button" class="btn btn-link btn-xs" data-bind="event: { click: revert }">Cancel</button> 
             </div>
 
