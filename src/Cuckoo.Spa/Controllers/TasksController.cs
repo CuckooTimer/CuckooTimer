@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cuckoo.Spa.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,6 +8,7 @@ using System.Web.Http;
 
 namespace Cuckoo.Spa.Controllers
 {
+    [InitializeSimpleMembership]
     public class TasksController : ApiController
     {
         // GET api/tasks
